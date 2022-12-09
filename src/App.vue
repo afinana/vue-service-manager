@@ -1,29 +1,29 @@
-<script setup>
-import HelloWorld from './components/Login.vue';
+<!--
+An example of creating a reusable grid component and using it with external data.
+-->
+
+<script>
+import DemoGrid from './components/Grid.vue';
+
+export default {
+  components: {
+    DemoGrid,
+  },
+  data: () => ({
+    searchQuery: '',
+    gridColumns: ['name', 'power'],
+    gridData: [
+      { name: 'Chuck Norris', power: Infinity },
+      { name: 'Bruce Lee', power: 9000 },
+      { name: 'Jackie Chan', power: 7000 },
+      { name: 'Jet Li', power: 8000 },
+    ],
+  }),
+};
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <form id="search">Search <input name="query" v-model="searchQuery" /></form>
+  <DemoGrid :data="gridData" :columns="gridColumns" :filter-key="searchQuery">
+  </DemoGrid>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>

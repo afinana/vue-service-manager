@@ -3,13 +3,25 @@ import { ref } from 'vue';
 
 defineProps({
   msg: String,
+  info: String,
 });
 
 const count = ref(0);
+
+// functions that mutate state and trigger updates
+function increment() {
+  count.value++
+}
+
+// lifecycle hooks
+onMounted(() => {
+  console.log(`The initial count is ${count.value}.`)
+})
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
+  <h4>{{ info }}</h4>
 
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
